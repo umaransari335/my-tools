@@ -3,113 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Umar - All in One Tools</title>
+<title>Umar Tools - Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-body{background:#0f172a;color:white;font-family:sans-serif;margin:0;padding:15px;text-align:center}
-h1{color:#38bdf8}
-.card{background:#1e293b;padding:20px;border-radius:15px;margin:20px 0;border:1px solid #334155}
-input,textarea{width:92%;padding:12px;border-radius:8px;border:none;margin:10px 0;font-size:15px}
-button{background:#38bdf8;color:#000;padding:12px;border:none;border-radius:8px;font-weight:bold;width:92%;cursor:pointer;margin-top:5px}
-#qrcode{display:flex;justify-content:center;margin-top:15px}
-img{max-width:100%;border-radius:8px}
+*{font-family:'Inter',sans-serif;box-sizing:border-box} body{background:#f8fafc;margin:0;padding:15px}
+header{background:#fff;padding:15px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.06);text-align:center;margin-bottom:20px}
+.card{background:#fff;padding:20px;border-radius:16px;margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+input,textarea,select{width:100%;padding:12px;border:1.5px solid #e2e8f0;border-radius:10px;margin:6px 0;background:#f8fafc}
+button{width:100%;padding:12px;border:none;border-radius:10px;font-weight:700;background:#0f172a;color:#fff;margin-top:6px}
+.preview{background:#f8fafc;border:1.5px dashed #cbd5e1;border-radius:10px;padding:15px;margin-top:10px;text-align:center}
 </style>
 </head>
 <body>
-<h1>Umar's Mega Tools 🔥</h1>
+<header><h2>UMAR TOOLS - PRO</h2></header>
 
-<div class="card">
-<h2>1. Handwriting Tool</h2>
-<textarea id="t" rows="3" placeholder="Yaha likho..."></textarea>
-<button onclick="hand()">Handwriting Banao</button>
-<div id="r" style="margin-top:10px;background:#000;padding:10px;border-radius:8px;min-height:20px"></div>
-</div>
+<div class="card"><h3>1. Handwriting</h3><textarea id="t" placeholder="Yaha likho"></textarea><button onclick="hand()">Generate</button><div class="preview" id="r">Preview</div></div>
 
-<div class="card">
-<h2>2. Password Generator</h2>
-<input id="n" placeholder="Naam likho jaise Arshu">
-<button onclick="pass()">Strong Password Banao</button>
-<h3 id="p"></h3>
-</div>
+<div class="card"><h3>2. Password Generator</h3><input id="n" placeholder="Naam likho"><button onclick="pass()">Password Banao</button><div class="preview" id="p"></div></div>
 
-<div class="card">
-<h2>3. Remove Background (Instant)</h2>
-<input type="file" id="bgFile" accept="image/*">
-<button onclick="removeBg()">Background Remove Karo</button>
-<p style="font-size:12px;color:#94a3b8">Note: White background ko transparent karega</p>
-<canvas id="canvas" style="display:none"></canvas>
-<img id="bgResult" style="margin-top:10px;display:none;background: repeating-conic-gradient(#808080 0% 25%, transparent 0% 50%) 50% / 20px 20px;">
-<br><a id="dlBg" style="display:none" download="no-bg.png"><button>Download PNG</button></a>
-</div>
+<div class="card" style="border:2px solid #0ea5e9"><h3>3. Text Repeater 🔁 (NEW)</h3><textarea id="repText" placeholder="Kya repeat karna hai?"></textarea><input type="number" id="repCount" value="50"><select id="repSep"><option value="\n">New Line me</option><option value=" ">Space se</option></select><button onclick="repeatText()" style="background:#0ea5e9">Repeat Karo</button><textarea id="repResult" rows="6" style="display:none;margin-top:10px"></textarea><button id="copyRep" style="display:none;background:#22c55e" onclick="copyRep()">Copy Karo</button></div>
 
-<div class="card">
-<h2>4. Image to PDF</h2>
-<input type="file" id="pdfFile" accept="image/*">
-<button onclick="imgToPdf()">PDF Banao</button>
-</div>
+<div class="card"><h3>4. BG Remover</h3><input type="file" id="bgFile" accept="image/*"><button onclick="removeBg()">Remove BG</button><canvas id="canvas" style="display:none"></canvas><img id="bgResult" style="display:none;max-width:100%;margin-top:10px"><a id="dlBg" download="no-bg.png" style="display:none"><button>Download</button></a></div>
 
-<div class="card">
-<h2>5. QR Code Generator</h2>
-<input id="qrText" placeholder="Link ya Text likho">
-<button onclick="makeQR()">QR Banao</button>
-<div id="qrcode"></div>
-</div>
+<div class="card"><h3>5. Image to PDF</h3><input type="file" id="pdfFile" accept="image/*"><button onclick="imgToPdf()">PDF Banao</button></div>
+
+<div class="card"><h3>6. QR Generator</h3><input id="qrText" placeholder="Link likho"><button onclick="makeQR()">QR Banao</button><div class="preview"><div id="qrcode"></div></div></div>
 
 <script>
-function hand(){
-let x=document.getElementById('t').value;
-if(!x) return alert('Kuch likho');
-document.getElementById('r').innerHTML='<span style="font-family:cursive;font-size:24px">'+x+'</span>';
-}
-function pass(){
-let name=document.getElementById('n').value||'Umar';
-let s='@#$%&';let c=s[Math.floor(Math.random()*5)];
-let num=Math.floor(Math.random()*9000)+100;
-document.getElementById('p').innerText=name+c+num+c+(Math.floor(Math.random()*90)+10);
-}
-function removeBg(){
-const file=document.getElementById('bgFile').files[0];
-if(!file) return alert('Image select karo');
-const img=new Image();
-img.onload=()=>{
-const canvas=document.getElementById('canvas');
-canvas.width=img.width; canvas.height=img.height;
-const ctx=canvas.getContext('2d');
-ctx.drawImage(img,0,0);
-let data=ctx.getImageData(0,0,canvas.width,canvas.height);
-for(let i=0;i<data.data.length;i+=4){
-if(data.data[i]>200 && data.data[i+1]>200 && data.data[i+2]>200){
-data.data[i+3]=0;
-}
-}
-ctx.putImageData(data,0,0);
-const res=document.getElementById('bgResult');
-res.src=canvas.toDataURL();
-res.style.display='block';
-const dl=document.getElementById('dlBg');
-dl.href=res.src; dl.style.display='inline-block';
-};
-img.src=URL.createObjectURL(file);
-}
-function imgToPdf(){
-const file=document.getElementById('pdfFile').files[0];
-if(!file) return alert('Image select karo');
-const reader=new FileReader();
-reader.onload=(e)=>{
-const {jsPDF}=window.jspdf;
-const doc=new jsPDF();
-doc.addImage(e.target.result,'JPEG',10,10,190,0);
-doc.save('umar-image.pdf');
-};
-reader.readAsDataURL(file);
-}
-function makeQR(){
-let txt=document.getElementById('qrText').value;
-if(!txt) return alert('Kuch likho');
-document.getElementById('qrcode').innerHTML='';
-new QRCode(document.getElementById('qrcode'),{text:txt,width:200,height:200});
-}
+function hand(){let x=document.getElementById('t').value;document.getElementById('r').innerHTML='<span style="font-family:Dancing Script;font-size:28px">'+x+'</span>'}
+function pass(){let b=document.getElementById('n').value||'Umar';let s='@#$%&';let c=s[Math.floor(Math.random()*5)];document.getElementById('p').innerText=b+c+(Math.floor(Math.random()*9000)+100)}
+function repeatText(){let txt=document.getElementById('repText').value;if(!txt)return alert('Text likho');let count=Math.min(parseInt(document.getElementById('repCount').value)||10,1000);let sep=document.getElementById('repSep').value;if(sep=='\\n')sep='\n';let res=Array(count).fill(txt).join(sep);let out=document.getElementById('repResult');out.value=res;out.style.display='block';document.getElementById('copyRep').style.display='block'}
+function copyRep(){let o=document.getElementById('repResult');o.select();document.execCommand('copy');alert('Copied')}
+function removeBg(){const file=document.getElementById('bgFile').files[0];if(!file)return alert('Image chuno');const img=new Image();img.onload=()=>{const canvas=document.getElementById('canvas');canvas.width=img.width;canvas.height=img.height;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);let d=ctx.getImageData(0,0,canvas.width,canvas.height);for(let i=0;i<d.data.length;i+=4){if(d.data[i]>210&&d.data[i+1]>210&&d.data[i+2]>210)d.data[i+3]=0}ctx.putImageData(d,0,0);const res=document.getElementById('bgResult');res.src=canvas.toDataURL();res.style.display='block';document.getElementById('dlBg').href=res.src;document.getElementById('dlBg').style.display='block'};img.src=URL.createObjectURL(file)}
+function imgToPdf(){const file=document.getElementById('pdfFile').files[0];if(!file)return alert('Image chuno');const r=new FileReader();r.onload=e=>{const {jsPDF}=window.jspdf;const doc=new jsPDF();doc.addImage(e.target.result,'JPEG',10,10,190,0);doc.save('tool.pdf')};r.readAsDataURL(file)}
+function makeQR(){let txt=document.getElementById('qrText').value;if(!txt)return alert('Link likho');document.getElementById('qrcode').innerHTML='';new QRCode(document.getElementById('qrcode'),{text:txt,width:200,height:200})}
 </script>
 </body>
 </html>
