@@ -1,96 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Umar Tools - All in One</title>
+<html><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Umar Tools Hub - 4 in 1</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#0f172a;color:white;padding:15px}
+body{background:#0f172a;color:#fff;padding:15px}
 .header{text-align:center;padding:20px 0}
 .header h1{font-size:28px;background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.card{background:#1e293b;border-radius:16px;padding:20px;margin-top:20px;border:1px solid #334155}
-.upload{border:2px dashed #475569;border-radius:12px;padding:30px;text-align:center;cursor:pointer}
-.upload:hover{border-color:#60a5fa;background:#1e293b}
-#preview{max-width:100%;max-height:250px;margin:15px auto;display:none;border-radius:10px}
-.btn{background:#3b82f6;color:white;border:none;padding:12px 20px;border-radius:10px;width:100%;font-size:16px;font-weight:600;margin-top:12px;cursor:pointer}
-.btn:disabled{background:#475569}
-textarea{width:100%;height:200px;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:12px;color:white;margin-top:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.tool{background:#1e293b;padding:15px;border-radius:12px;text-align:center;border:1px solid #334155}
-.progress{margin-top:10px;color:#94a3b8;font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.card{background:#1e293b;border-radius:16px;padding:18px;text-align:center;border:1px solid #334155;cursor:pointer}
+.card b{font-size:13px;display:block;margin-top:8px}
+.tool{display:none}.tool.active{display:block}
+.btn{background:#7c3aed;color:#fff;border:none;padding:12px;width:100%;border-radius:10px;margin-top:12px;font-weight:600}
+input,textarea{width:100%;padding:12px;border-radius:10px;background:#0f172a;color:#fff;border:1px solid #334155;margin-top:10px}
+img{max-width:100%;border-radius:10px;margin-top:10px}
 </style>
 </head>
 <body>
-<div class="header">
-<h1>Umar Tools Hub</h1>
-<p style="color:#94a3b8;margin-top:8px">Handwriting to Text + All Tools</p>
-<p style="color:#64748b;font-size:12px;margin-top:4px">https://transcendent-raindrop-57c41d.netlify.app</p>
-</div>
-
-<div class="card">
-<h2 style="margin-bottom:10px">✍️ Handwriting to Text (NEW)</h2>
-<div class="upload" onclick="document.getElementById('file').click()">
-<p>📷 Click to Upload Handwriting Photo</p>
-<p style="font-size:12px;color:#94a3b8;margin-top:5px">JPG, PNG - Notebook, Paper</p>
-</div>
-<input type="file" id="file" accept="image/*" hidden>
-<img id="preview">
-<div class="progress" id="status"></div>
-<button class="btn" id="convertBtn" style="display:none">Convert to Text</button>
-<textarea id="result" placeholder="Converted text will appear here..."></textarea>
-<button class="btn" style="background:#10b981;margin-top:8px" onclick="copyText()">📋 Copy Text</button>
-</div>
-
+<div id="home">
+<div class="header"><h1>Umar Tools Hub</h1><p style="color:#94a3b8;font-size:13px;margin-top:6px">4 Tools - Fast & Free</p></div>
 <div class="grid">
-<div class="tool">📝 Word Counter</div>
-<div class="tool">🔤 Image to Text</div>
-<div class="tool">📱 QR Generator</div>
-<div class="tool">🔗 URL Short</div>
+<div class="card" onclick="openT('bg')">🖼️<b>Background Remover</b></div>
+<div class="card" onclick="openT('pdf')">📄<b>JPG to PDF</b></div>
+<div class="card" onclick="openT('ocr')">✍️<b>Handwriting to Text</b></div>
+<div class="card" onclick="openT('sarkari')">🏛️<b>Sarkari Result</b></div>
 </div>
+</div>
+
+<div id="bg" class="tool"><button onclick="goH()">← Back</button><h2 style="margin-top:12px">Background Remover</h2><input type="file" id="bgI" accept="image/*"><img id="bgP"><canvas id="cvs" style="display:none"></canvas><button class="btn" onclick="remBG()">Remove & Download</button><a id="dwn" class="btn" style="display:none;text-align:center;text-decoration:none" download="bg-removed.png">Download PNG</a></div>
+
+<div id="pdf" class="tool"><button onclick="goH()">← Back</button><h2 style="margin-top:12px">JPG to PDF</h2><input type="file" id="pdfI" accept="image/*" multiple><button class="btn" onclick="toPDF()">Convert & Download PDF</button></div>
+
+<div id="ocr" class="tool"><button onclick="goH()">← Back</button><h2 style="margin-top:12px">Handwriting to Text</h2><input type="file" id="ocrI" accept="image/*"><img id="ocrP"><button class="btn" onclick="doOCR()">Extract Text</button><textarea id="ocrO" style="height:120px" placeholder="Text here..."></textarea></div>
+
+<div id="sarkari" class="tool"><button onclick="goH()">← Back</button><h2 style="margin-top:12px">Sarkari Result</h2><div class="card" style="text-align:left;margin-top:15px" onclick="window.open('https://sarkariresult.com.cm','_blank')"><b>🔗 Open SarkariResult.com.cm</b><p style="font-size:12px;color:#94a3b8;margin-top:4px">Latest Jobs, Results, Admit Card</p></div><div class="card" style="text-align:left;margin-top:10px"><b>📢 SSC, Railway, UPSC, Banking</b><p style="font-size:12px;color:#94a3b8">All updates available</p></div></div>
 
 <script>
-const fileInput=document.getElementById('file');
-const preview=document.getElementById('preview');
-const status=document.getElementById('status');
-const convertBtn=document.getElementById('convertBtn');
-const result=document.getElementById('result');
-let selectedFile=null;
-
-fileInput.onchange=e=>{
- selectedFile=e.target.files[0];
- if(!selectedFile)return;
- preview.src=URL.createObjectURL(selectedFile);
- preview.style.display='block';
- convertBtn.style.display='block';
- status.textContent='Image loaded. Click Convert.';
-}
-
-convertBtn.onclick=async()=>{
- if(!selectedFile)return;
- convertBtn.disabled=true;
- convertBtn.textContent='Converting...';
- status.textContent='⏳ Reading handwriting... 0%';
- result.value='';
- try{
-  const {data:{text}} = await Tesseract.recognize(selectedFile,'eng', {
-   logger:m=>{ if(m.status==='recognizing text'){ status.textContent=`⏳ Reading... ${Math.round(m.progress*100)}%` } }
-  });
-  result.value=text.trim();
-  status.textContent='✅ Done! Text extracted.';
- }catch(err){
-  status.textContent='❌ Error: '+err.message;
- }
- convertBtn.disabled=false;
- convertBtn.textContent='Convert to Text';
-}
-
-function copyText(){
- result.select();
- document.execCommand('copy');
- status.textContent='📋 Copied to clipboard!';
-}
+function openT(id){document.getElementById('home').style.display='none';document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function goH(){document.getElementById('home').style.display='block';document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'))}
+let imgObj=null;
+document.getElementById('bgI')?.addEventListener('change',e=>{let f=e.target.files[0];let r=new FileReader();r.onload=x=>{document.getElementById('bgP').src=x.target.result;imgObj=new Image();imgObj.src=x.target.result};r.readAsDataURL(f)});
+function remBG(){if(!imgObj){alert('Image select karo');return}let cv=document.getElementById('cvs');let cx=cv.getContext('2d');cv.width=imgObj.width;cv.height=imgObj.height;cx.drawImage(imgObj,0,0);let d=cx.getImageData(0,0,cv.width,cv.height);for(let i=0;i<d.data.length;i+=4){if(d.data[i]>210&&d.data[i+1]>210&&d.data[i+2]>210)d.data[i+3]=0}cx.putImageData(d,0,0);let a=document.getElementById('dwn');a.href=cv.toDataURL();a.style.display='block'}
+function toPDF(){let fs=document.getElementById('pdfI').files;if(!fs.length){alert('Image select karo');return}let {jsPDF}=window.jspdf;let doc=new jsPDF();[...fs].forEach((f,i)=>{let rd=new FileReader();rd.onload=e=>{if(i>0)doc.addPage();doc.addImage(e.target.result,'JPEG',10,10,190,0);if(i==fs.length-1)doc.save('Umar-Tools.pdf')};rd.readAsDataURL(f)})}
+async function doOCR(){let f=document.getElementById('ocrI').files[0];if(!f){alert('Image select karo');return}document.getElementById('ocrO').value='Wait...';let rd=new FileReader();rd.onload=async e=>{document.getElementById('ocrP').src=e.target.result;let r=await Tesseract.recognize(e.target.result,'eng+hin');document.getElementById('ocrO').value=r.data.text};rd.readAsDataURL(f)}
 </script>
-</body>
-</html>
+</body></html>
