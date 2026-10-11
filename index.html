@@ -3,29 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEGA TOOLS - All Free Online Tools</title>
+<title>MEGA TOOLS 07 - Made by Umar</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1165043619679285" crossorigin="anonymous"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f7fb}
-header{background:#0f172a;color:#fff;padding:20px;text-align:center}
-.container{max-width:1100px;margin:18px auto;padding:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 4px 12px rgba(0,0,0,.07)}
-.card h3{margin-bottom:10px}
-.card input,.card textarea{width:100%;padding:10px;margin:5px 0;border:1px solid #ddd;border-radius:8px}
-.card button{width:100%;padding:10px;background:#2563eb;color:#fff;border:0;border-radius:8px;font-weight:bold}
-.result{margin-top:8px;background:#eef2ff;padding:8px;border-radius:8px;min-height:30px;word-break:break-all}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+body{background:#eef2f7}
+header{background:#1a1d23;color:#fff;padding:18px 30px;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:28px;letter-spacing:1px}
+header p{color:#9ca3af;font-size:14px}
+nav a{color:#d1d5db;margin-left:20px;text-decoration:none;font-size:14px}
+.main{text-align:center;padding:40px 20px 10px}
+.main h2{color:#1e3a8a;font-size:32px;margin-bottom:8px}
+.main p{color:#555}
+.grid{max-width:1100px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:15px}
+.card{background:#fff;border-radius:16px;padding:28px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.06);transition:.2s}
+.card:hover{transform:translateY(-5px)}
+.icon{width:80px;height:80px;background:#dbeafe;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:40px}
+.card h3{margin-bottom:6px}
+.card small{color:#666;font-size:13px;display:block;margin-bottom:16px}
+.card button{background:#1d4ed8;color:#fff;border:0;padding:10px 20px;border-radius:8px;font-weight:bold;cursor:pointer}
+.tool-area{max-width:800px;margin:10px auto 30px;background:#fff;padding:15px;border-radius:12px;display:none}
+.tool-area input,.tool-area textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
+.result{background:#eef2ff;padding:10px;border-radius:8px;margin-top:8px;min-height:30px}
+footer{text-align:center;padding:20px;color:#888;font-size:13px}
 </style>
 </head>
 <body>
-<header><h1>🚀 MEGA TOOLS</h1><p>All Tools Free</p></header>
-<div class="container">
-<div class="card"><h3>1. Text Repeater</h3><textarea id="a" placeholder="Text"></textarea><input type="number" id="b" placeholder="Times"><button onclick="r1.innerText=a.value.repeat(b.value).slice(0,5000)">Repeat</button><div id="r1" class="result"></div></div>
-<div class="card"><h3>2. Word Counter</h3><textarea id="c" placeholder="Paste"></textarea><button onclick="let v=c.value.trim();r2.innerText='Words: '+(v?v.split(/\s+/).length:0)">Count</button><div id="r2" class="result"></div></div>
-<div class="card"><h3>3. Age Calculator</h3><input type="date" id="d"><button onclick="let dob=new Date(d.value);r3.innerText='Age: '+(new Date(Date.now()-dob).getUTCFullYear()-1970)">Calc</button><div id="r3" class="result"></div></div>
-<div class="card"><h3>4. EMI</h3><input type="number" id="p" placeholder="Loan"><input type="number" id="q" placeholder="Rate %"><input type="number" id="n" placeholder="Months"><button onclick="let P=+p.value,R=+q.value/12/100,N=+n.value,E=(P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);r4.innerText='EMI ₹'+E.toFixed(2)">EMI</button><div id="r4" class="result"></div></div>
-<div class="card"><h3>5. Fuel Cost</h3><input type="number" id="km" placeholder="KM"><input type="number" id="ml" placeholder="Mileage"><input type="number" id="pr" placeholder="Price"><button onclick="let k=+km.value,m=+ml.value,pp=+pr.value,f=k/m;r5.innerText='Cost ₹'+(f*pp).toFixed(2)" style="background:#f59e0b">Calc</button><div id="r5" class="result"></div></div>
-<div class="card"><h3>6. QR Generator</h3><input type="text" id="qr"><button onclick="r6.innerHTML='<img src=https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(qr.value)+'>'">Generate</button><div id="r6" class="result" style="text-align:center"></div></div>
-</div>
-</body>
-</html>
+<header>
+<div><h1>🧰 MEGA TOOLS 07</h1><p>All Useful Tools - Made by Umar</p></div>
+<nav><a href="#">Home</a
