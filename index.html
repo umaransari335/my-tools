@@ -1,36 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1165043619679285"
-     crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1165043619679285" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MEGA TOOLS - Official Website | Mega Tools Hub</title>
-<meta name="description" content="MEGA TOOLS Official - Best Free Online Tools - Photo Tools, PDF Tools, Bihar Jobs. Search MEGA TOOLS on Google.">
-<meta name="keywords" content="MEGA TOOLS, mega tools, mega tools hub, mega tools official, umar mega tools">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEGA TOOLS - All Free Online Tools</title>
 <style>
-*{font-family:'Inter',sans-serif;box-sizing:border-box}
-body{background:#f8fafc;padding:15px;margin:0}
-.header{background:#000;color:#00ff88;padding:15px;border-radius:12px;text-align:center}
-.header h2{margin:0;letter-spacing:3px}
-.card{background:#fff;padding:20px;border-radius:16px;margin:15px 0;box-shadow:0 4px 10px #0001}
-input,textarea,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px;margin:8px 0}
-.btn{width:100%;padding:12px;border:none;border-radius:10px;background:#000;color:#00ff88;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f7fb;color:#111}
+header{background:#0f172a;color:#fff;padding:20px;text-align:center}
+header h1{font-size:28px;letter-spacing:1px}
+header p{opacity:.8;margin-top:5px}
+.container{max-width:1100px;margin:20px auto;padding:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,.08)}
+.card h3{margin-bottom:10px;color:#0f172a}
+.card input, .card select, .card textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:8px}
+.card button{width:100%;padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:8px;font-weight:bold}
+.card button:hover{background:#1d4ed8}
+.result{margin-top:10px;padding:10px;background:#eef2ff;border-radius:8px;font-weight:bold;word-break:break-all}
+footer{text-align:center;padding:20px;color:#666}
 </style>
 </head>
 <body>
-<header class="header"><h2>MEGA TOOLS - PRO</h2><p>Search MEGA TOOLS on Google</p></header>
+<header>
+<h1>🚀 MEGA TOOLS</h1>
+<p>All Useful Tools in One Place - 100% Free</p>
+</header>
 
-<div class="card"><h3>1. Handwriting to Text</h3><textarea id="t1" placeholder="Type here..."></textarea><button class="btn" onclick="navigator.clipboard.writeText(t1.value);alert('Copied - MEGA TOOLS')">Copy Text</button></div>
+<div class="container">
 
-<div class="card"><h3>2. Password Generator</h3><input id="p1" readonly><button class="btn" onclick="p1.value=Math.random().toString(36).slice(-10)+'@07'">Generate - MEGA TOOLS</button></div>
-
-<div class="card"><h3>3. Bihar Tools</h3><a href="https://sarkariresult.com.cm/" style="display:block;background:#00ff88;color:#000;padding:12px;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold">Bihar Jobs - MEGA TOOLS</a></div>
-
-<div class="card" style="text-align:center;background:#000;color:#fff">
-<h3 style="color:#00ff88">MEGA TOOLS</h3>
-<p>Official Website - Google pe Search Karo: MEGA TOOLS</p>
-<p style="color:#555;font-size:12px">by Umar #07 | Nayagaon</p>
+<!-- 1. Text Repeater -->
+<div class="card">
+<h3>1. Text Repeater</h3>
+<textarea id="repText" placeholder="Enter text"></textarea>
+<input type="number" id="repNum" placeholder="How many times? ex: 100">
+<button onclick="repeatText()">Repeat</button>
+<div id="repResult" class="result"></div>
 </div>
+
+<!-- 2. Word Counter -->
+<div class="card">
+<h3>2. Word Counter</h3>
+<textarea id="wordText" placeholder="Paste your text here"></textarea>
+<button onclick="countWords()">Count</button>
+<div id="wordResult" class="result"></div>
+</div>
+
+<!-- 3. Age Calculator -->
+<div class="card">
+<h3>3. Age Calculator</h3>
+<input type="date" id="dob">
+<button onclick="calcAge()">Calculate Age</button>
+<div id="ageResult" class="result"></div>
+</div>
+
+<!-- 4. Case Converter -->
+<div class="card">
+<h3>4. Text Case Converter</h3>
+<textarea id="caseText" placeholder="Enter text"></textarea>
+<button onclick="toUpper()">UPPERCASE</button>
+<button onclick="toLower()" style="background:#10b981">lowercase</button>
+<div id="caseResult" class="result"></div>
+</div>
+
+<!-- 5. EMI Calculator -->
+<div class="card">
+<h3>5. EMI Calculator</h3>
+<input type="number" id="loan" placeholder="Loan Amount ₹">
+<input type="number" id="rate" placeholder="Interest % per year">
+<input type="number" id="time" placeholder="Time in Months">
+<button onclick="calcEMI()">Calculate EMI</button>
+<div id="emiResult" class="result"></div>
+</div>
+
+<!-- 6. QR Generator -->
+<div class="card">
+<h3>6. QR Code Generator</h3>
+<input type="text" id="qrText" placeholder="Enter Link or Text">
+<button onclick="genQR()">Generate QR</button>
+<div id="qrResult" class="result" style="text-align:center"></div>
+</div>
+
+<!-- 7. NEW - Car Fuel Cost Calculator -->
+<div class="card" style="border:2px solid #f59e0b">
+<h3>7. ⛽ Car Fuel Cost Calculator</h3>
+<input type="number" id="distance" placeholder="Distance in KM">
+<input type="number" id="mileage" placeholder="Car Mileage (ex: 15)">
+<input type="number" id="fuelPrice" placeholder="Petrol Price ₹ (ex: 107)">
+<button onclick="calcFuel()" style="background:#f59e0b">Calculate Fuel Cost</button>
+<div id="fuelResult" class="result"></div>
+</div>
+
+<!-- 8. Password Generator -->
+<div class="card">
+<h3>8. Password Generator</h3>
+<input type="number" id="passLen" placeholder="Length ex: 12">
+<button onclick="genPass()">Generate Strong Password</button>
+<div id="passResult" class="result"></div>
+</div>
+
+<!-- 9. Image to Text length etc -->
+<div class="card">
+<h3>9. Character Counter</h3>
+<textarea id="charText" placeholder="Type..."></textarea>
+<button onclick="countChar()">Count Characters</button>
+<div id="charResult" class="result"></div>
+</div>
+
+</div>
+
+<footer>© 2026 MEGA TOOLS - Made by Umar</footer>
+
+<script>
+// 1
+function repeatText(){let t=document.getElementById('repText').value;let n=document.getElementById('repNum').value;document.getElementById('repResult').innerText=t.repeat(n).substring(0,5000)}
+// 2
+function countWords(){let t=document.getElementById('wordText').value.trim();let w=t?t.split(/\s+/).length:0;document.getElementById('wordResult').innerText="Words: "+w+" | Characters: "+t.length}
+// 3
+function calcAge(){let dob=new Date(document.getElementById('dob').value);let diff=Date.now()-dob.getTime();let age=new Date(diff).getUTCFullYear()-1970;document.getElementById('ageResult').innerText="Your Age is: "+age+" years"}
+// 4
+function toUpper(){document.getElementById('caseResult').innerText=document.getElementById('caseText').value.toUpperCase()}
+function toLower(){document.getElementById('caseResult').innerText=document.getElementById('caseText').value.toLowerCase()}
+// 5 EMI
+function calcEMI(){let P=parseFloat(document.getElementById('loan').value);let R=parseFloat(document.getElementById('rate').value)/12/100;let N=parseFloat(document.getElementById('time').value);let emi=(P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);document.getElementById('emiResult').innerText="Monthly EMI: ₹"+emi.toFixed(2)}
+// 6 QR
+function genQR(){let t=document.getElementById('qrText').value;document.getElementById('qrResult').innerHTML="<img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+encodeURIComponent(t)+"'>";}
+// 7 FUEL
+function calcFuel(){let d=parseFloat(document.getElementById('distance').value);let m=parseFloat(document.getElementById('mileage').value);let p=parseFloat(document.getElementById('fuelPrice').value);let fuel=d/m;let cost=fuel*p;document.getElementById('fuelResult').innerText="Fuel Needed: "+fuel.toFixed(2)+" L | Cost: ₹"+cost.toFixed(2)}
+// 8 PASS
+function genPass(){let len=document.getElementById('passLen').value||12;let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";let pass="";for(let i=0;i<len;i++)pass+=chars.charAt(Math.floor(Math.random()*chars.length));document.getElementById('passResult').innerText=pass}
+// 9 CHAR
+function countChar(){document.getElementById('charResult').innerText="Characters: "+document.getElementById('charText').value.length}
+</script>
 </body>
 </html>
